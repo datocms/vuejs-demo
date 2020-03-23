@@ -1,6 +1,6 @@
 {
   "name": "Vue.js profile card",
-  "previewImage": "https://raw.githubusercontent.com/stefanoverna/vuejs-demo/master/preview.png",
+  "previewImage": "https://raw.githubusercontent.com/datocms/vuejs-demo/master/preview.png",
   "templateId": "23796",
   "deploymentType": "static",
   "buildCommand": "yarn build",
