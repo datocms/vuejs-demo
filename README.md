@@ -2,7 +2,7 @@
 
 ## Deploy on DatoCMS
 
-[![Deploy with DatoCMS](https://dashboard.datocms.com/deploy/button.svg)](https://dashboard.datocms.com/deploy?repo=stefanoverna/vuejs-demo)
+[![Deploy with DatoCMS](https://dashboard.datocms.com/deploy/button.svg)](https://dashboard.datocms.com/deploy?repo=datocms/vuejs-demo)
 
 ## Project setup
 ```
