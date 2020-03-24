@@ -1,9 +1,9 @@
 {
   "name": "Vue.js profile card",
   "previewImage": "https://raw.githubusercontent.com/datocms/vuejs-demo/master/preview.png",
-  "templateId": "23796",
+  "templateId": "24638",
   "deploymentType": "static",
-  "buildCommand": "yarn build",
+  "buildCommand": "npm run build",
   "buildDirectory": "dist",
   "datocmsApiTokenEnvName": "VUE_APP_CMS_DATOCMS_API_TOKEN"
 }
