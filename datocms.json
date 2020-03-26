@@ -1,9 +1,11 @@
 {
-  "name": "Vue.js profile card",
-  "previewImage": "https://raw.githubusercontent.com/datocms/vuejs-demo/master/preview.png",
-  "templateId": "24638",
+  "name": "Vue.js Profile Card Website",
+  "description": "Simple Vue.js personal profile card website built with Tailwind CSS framework that fetches content from DatoCMS using Axios",
+  "previewImage": "https://www.datocms-assets.com/205/1585040755-screen-shot-2020-03-24-at-10-05-31-fullpage.png?crop=top&fit=crop&h=500&w=600&auto=format",
+  "datocmsProjectId": "24638",
   "deploymentType": "static",
   "buildCommand": "npm run build",
   "buildDirectory": "dist",
-  "datocmsApiTokenEnvName": "VUE_APP_CMS_DATOCMS_API_TOKEN"
+  "datocmsApiTokenEnvName": "VUE_APP_CMS_DATOCMS_API_TOKEN",
+  "livePreviewUrl": "https://vuejs-datocms-demo.netlify.com"
 }
