@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
@@ -12,8 +13,13 @@
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/vue-fontawesome": "^0.1.9",
+    "@tailwindcss/postcss7-compat": "^2.2.4",
+    "autoprefixer": "^9.8.6",
     "axios": "^0.21.1",
     "core-js": "^3.6.4",
+    "npm-force-resolutions": "^0.0.10",
+    "postcss": "^7.0.36",
+    "tailwindcss": "^1.9.6",
     "vue": "^2.6.11",
     "vue-datocms": "^0.0.4",
     "vue-meta": "^2.3.3"
@@ -27,6 +33,10 @@
     "eslint-plugin-vue": "^6.1.2",
     "vue-cli-plugin-tailwind": "~1.2.0",
     "vue-template-compiler": "^2.6.11"
+  },
+  "resolutions": {
+    "glob-parent": "5.1.2",
+    "postcss": "7.0.36"
   },
   "eslintConfig": {
     "root": true,
