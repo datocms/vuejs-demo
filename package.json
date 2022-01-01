@@ -5,7 +5,7 @@
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --output public",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
