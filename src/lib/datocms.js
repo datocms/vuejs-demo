@@ -14,7 +14,7 @@ export async function request({ query, variables, preview }) {
     {
       headers: {
         Authorization:
-          `Bearer ${process.env.VUE_APP_CMS_DATOCMS_API_TOKEN}`
+          `Bearer ${import.meta.env.VITE_DATOCMS_API_TOKEN}`
       }
     }
   )
