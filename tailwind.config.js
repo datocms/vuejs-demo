@@ -8,4 +8,10 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /^bg-(gray|red|orange|yellow|green|teal|blue|indigo|purple|pink)-(700|900)$/,
+      variants: ['hover'],
+    },
+  ],
 }

@@ -11,7 +11,7 @@
       }"
     >
       <div
-        class="bg-cover fixed top-0 right-0 bottom-0 left-0"
+        class="bg-cover fixed top-0 right-0 bottom-0 left-0 overflow-scroll"
         v-bind:style="{
           backgroundImage: `url('${data.theme.backgroundImage.url}')`
         }"
@@ -23,8 +23,8 @@
           <div
             id="profile"
             v-bind:class="[
-              'w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl opacity-75 mx-6 lg:mx-0',
-              nightMode ? 'bg-gray-900' : 'bg-white'
+              'w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl mx-6 lg:mx-0',
+              nightMode ? 'bg-gray-900' : 'bg-white/75'
             ]"
           >
             <div class="p-4 md:p-12 text-center lg:text-left">
@@ -116,11 +116,11 @@
             </div>
           </div>
 
-          <div class="w-full lg:w-2/5">
+          <div class="w-full lg:w-2/5 hidden lg:block">
             <!-- Big profile image for side bar (desktop) -->
             <datocms-image
               :data="data.profile.photo.desktopImage"
-              class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block"
+              class="rounded-none lg:rounded-lg shadow-2xl"
             />
             <!-- Image from: http://unsplash.com/photos/MP0IUfwrn0A -->
           </div>
