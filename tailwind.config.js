@@ -1,4 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+
+// Colors available in the Dato project
+const colors = 'gray|red|orange|yellow|green|teal|blue|indigo|purple|pink'
+
 module.exports = {
   content: [
     "./index.html",
@@ -10,7 +14,14 @@ module.exports = {
   plugins: [],
   safelist: [
     {
-      pattern: /^bg-(gray|red|orange|yellow|green|teal|blue|indigo|purple|pink)-(700|900)$/,
+      pattern: new RegExp(`^bg-(${colors})-(700|900)$`),
+      variants: ['hover'],
+    },
+    {
+      pattern: new RegExp(`^border-(${colors})-(500)$`),
+    },
+    {
+      pattern: new RegExp(`^text-(${colors})-(700)$`),
       variants: ['hover'],
     },
   ],
