@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-export async function request({ query, variables, preview }) {
+export async function request(
+  { query, variables, preview }: 
+  { query: string, variables: Record<string, any>, preview: boolean }
+) {
   const endpoint = preview
     ? `https://graphql.datocms.com/preview`
     : `https://graphql.datocms.com/`

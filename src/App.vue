@@ -151,7 +151,7 @@ import { toHead } from "vue-datocms";
 
 const nightMode = ref(window.matchMedia("(prefers-color-scheme: dark)").matches)
 
-const data = ref(null)
+const data = ref<any>(null)
 
 const toggleDayNight = () => {
   nightMode.value = !nightMode.value;
