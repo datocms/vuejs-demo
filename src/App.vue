@@ -11,7 +11,7 @@
       }"
     >
       <div
-        class="bg-cover fixed top-0 right-0 bottom-0 left-0"
+        class="bg-cover fixed top-0 right-0 bottom-0 left-0 overflow-scroll"
         v-bind:style="{
           backgroundImage: `url('${data.theme.backgroundImage.url}')`
         }"
@@ -23,8 +23,8 @@
           <div
             id="profile"
             v-bind:class="[
-              'w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl opacity-75 mx-6 lg:mx-0',
-              nightMode ? 'bg-gray-900' : 'bg-white'
+              'w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl mx-6 lg:mx-0',
+              nightMode ? 'bg-gray-900' : 'bg-white/75'
             ]"
           >
             <div class="p-4 md:p-12 text-center lg:text-left">
@@ -116,11 +116,11 @@
             </div>
           </div>
 
-          <div class="w-full lg:w-2/5">
+          <div class="w-full lg:w-2/5 hidden lg:block">
             <!-- Big profile image for side bar (desktop) -->
             <datocms-image
               :data="data.profile.photo.desktopImage"
-              class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block"
+              class="rounded-none lg:rounded-lg shadow-2xl"
             />
             <!-- Image from: http://unsplash.com/photos/MP0IUfwrn0A -->
           </div>
@@ -140,92 +140,98 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
+
+import { ref, computed, onMounted } from "vue";
+
+import { useHead } from '@vueuse/head'
+
 import { request } from "./lib/datocms";
 import { toHead } from "vue-datocms";
 
-export default {
-  name: "App",
-  data() {
-    return {
-      nightMode: window.matchMedia("(prefers-color-scheme: dark)").matches,
-      data: null
-    };
-  },
-  methods: {
-    toggleDayNight() {
-      this.nightMode = !this.nightMode;
-    }
-  },
-  metaInfo() {
-    if (!this || !this.data) {
-      return;
-    }
-    return toHead(this.data.profile.seo, this.data.site.favicon);
-  },
-  async mounted() {
-    this.data = await request({
-      query: `
-        {
-          site: _site {
-            favicon: faviconMetaTags {
-              ...metaTagsFragment
-            }
-          }
-          profile {
-            seo: _seoMetaTags {
-              ...metaTagsFragment
-            }
-            name
-            description
-            profession
-            location
-            email
-            coordinates {
-              latitude
-              longitude
-            }
-            photo {
-              desktopImage: responsiveImage(imgixParams: { w: 360, h: 540, fit: crop, crop: faces, auto: format }) {
-                ...imageFields
-              }
-              mobileImage: responsiveImage(imgixParams: { w: 192, h: 192, fit: crop, crop: faces, auto: format }) {
-                ...imageFields
-              }
-            }
-          }
-          theme {
-            color
-            backgroundImage {
-              url(imgixParams: { w: 1440, auto: format })
-              responsiveImage(imgixParams: { w: 1440, auto: format }) {
-                base64
-              }
-            }
-          }
-          socials: allSocials {
-            social
-            url
-          }
-        }
+const nightMode = ref(window.matchMedia("(prefers-color-scheme: dark)").matches)
 
-        fragment metaTagsFragment on Tag {
-          attributes
-          content
-          tag
-        }
-        fragment imageFields on ResponsiveImage {
-          srcSet
-          sizes
-          src
-          width
-          height
-          alt
-          title
-          base64
-        }
-      `
-    });
+const data = ref<any>(null)
+
+const toggleDayNight = () => {
+  nightMode.value = !nightMode.value;
+}
+
+const computedMeta = computed(() => {
+  if (!data.value) {
+    return {};
   }
-};
+  
+  return toHead(data.value.profile.seo, data.value.site.favicon);
+})
+
+useHead(computedMeta)
+
+onMounted(async () => {
+  data.value = await request({
+    query: `
+      {
+        site: _site {
+          favicon: faviconMetaTags {
+            ...metaTagsFragment
+          }
+        }
+        profile {
+          seo: _seoMetaTags {
+            ...metaTagsFragment
+          }
+          name
+          description
+          profession
+          location
+          email
+          coordinates {
+            latitude
+            longitude
+          }
+          photo {
+            desktopImage: responsiveImage(imgixParams: { w: 360, h: 540, fit: crop, crop: faces, auto: format }) {
+              ...imageFields
+            }
+            mobileImage: responsiveImage(imgixParams: { w: 192, h: 192, fit: crop, crop: faces, auto: format }) {
+              ...imageFields
+            }
+          }
+        }
+        theme {
+          color
+          backgroundImage {
+            url(imgixParams: { w: 1440, auto: format })
+            responsiveImage(imgixParams: { w: 1440, auto: format }) {
+              base64
+            }
+          }
+        }
+        socials: allSocials {
+          social
+          url
+        }
+      }
+
+      fragment metaTagsFragment on Tag {
+        attributes
+        content
+        tag
+      }
+      fragment imageFields on ResponsiveImage {
+        srcSet
+        sizes
+        src
+        width
+        height
+        alt
+        title
+        base64
+      }
+    `,
+    variables: {},
+    preview: false,
+  });
+})
+
 </script>
