@@ -6,6 +6,6 @@
   "deploymentType": "static",
   "buildCommand": "npm run build",
   "buildDirectory": "dist",
-  "datocmsApiTokenEnvName": "VUE_APP_CMS_DATOCMS_API_TOKEN",
+  "datocmsApiTokenEnvName": "VITE_DATOCMS_API_TOKEN",
   "livePreviewUrl": "https://vuejs-datocms-demo.netlify.com"
 }
