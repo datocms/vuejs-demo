@@ -6,6 +6,11 @@
   "deploymentType": "static",
   "buildCommand": "npm run build",
   "buildDirectory": "dist",
-  "datocmsApiTokenEnvName": "VITE_DATOCMS_API_TOKEN",
-  "livePreviewUrl": "https://vuejs-datocms-demo.netlify.com"
+  "livePreviewUrl": "https://vuejs-datocms-demo.netlify.com",
+  "environmentVariables": {
+    "VITE_DATOCMS_PUBLISHED_CONTENT_CDA_TOKEN": {
+      "type": "datocmsAccessToken",
+      "tokenName": "CDA Only (Published)"
+    }
+  }
 }

@@ -17,7 +17,7 @@
 Or if you are manually setting up the project, set the API token manually:
 
 ```
-echo 'VITE_DATOCMS_API_TOKEN=abc123' >> .env
+echo 'VITE_DATOCMS_PUBLISHED_CONTENT_CDA_TOKEN=abc123' >> .env
 ```
 
 ## Project setup

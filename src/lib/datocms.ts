@@ -4,9 +4,11 @@ export async function request(
   { query, variables, preview }: 
   { query: string, variables: Record<string, any>, preview: boolean }
 ) {
-  const endpoint = preview
-    ? `https://graphql.datocms.com/preview`
-    : `https://graphql.datocms.com/`
+  if (preview) {
+    throw new Error('Preview requests require a server-gated draft flow.')
+  }
+
+  const endpoint = `https://graphql.datocms.com/`
 
   const { data } = await axios.post(
     endpoint,
@@ -17,7 +19,7 @@ export async function request(
     {
       headers: {
         Authorization:
-          `Bearer ${import.meta.env.VITE_DATOCMS_API_TOKEN}`
+          `Bearer ${import.meta.env.VITE_DATOCMS_PUBLISHED_CONTENT_CDA_TOKEN}`
       }
     }
   )
